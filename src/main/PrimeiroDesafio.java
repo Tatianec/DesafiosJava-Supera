@@ -11,15 +11,14 @@ public class PrimeiroDesafio {
 		Scanner sc = new Scanner(System.in);
 		int n, valor;
 
-
 		System.out.println("Por favor, informe a quantidade de números que irá digitar:  ");
-		n = sc.nextInt();
-
+		n = obterQuantidadeNumero(sc);
+		
 		List<Integer> listaPar = new ArrayList<>();
 		List<Integer> listaImpar = new ArrayList<>();
 
 		for (int i = 0; i < n; i++) {
-
+			System.out.printf("Por favor, informe o número da posição %d \n", i+1);
 			valor = sc.nextInt();
 
 			if(valor > 0) {
@@ -33,6 +32,8 @@ public class PrimeiroDesafio {
 			}
 		}
 		
+		System.out.println("Números pares em ordem crescente e ímpares decrescente:");
+		
 		listarPares(listaPar);
 		
 		listarImpares(listaImpar);
@@ -41,7 +42,7 @@ public class PrimeiroDesafio {
 	}
 	
 	
-	public static void listarPares(List<Integer> listaPar) {
+	private static void listarPares(List<Integer> listaPar) {
 		Collections.sort(listaPar);
 		
 		for (int numeroPar : listaPar) {
@@ -50,12 +51,25 @@ public class PrimeiroDesafio {
 		
 	}
 	
-	public static void listarImpares(List<Integer> listaImpar) {
+	private static void listarImpares(List<Integer> listaImpar) {
 		Collections.sort(listaImpar, Collections.reverseOrder());
 
 		for (int numeroImpar : listaImpar) {
 			System.out.println(numeroImpar);
 		}
 		
+	}
+	
+	private static int obterQuantidadeNumero(Scanner sc) {
+		int entrada = 0;
+		
+		entrada = sc.nextInt();
+		
+		while (1 >= entrada || entrada > Math.pow(10,5)) {
+			System.out.println("Por favor, informe um número entre 2 e 100000");
+			entrada = sc.nextInt();
+		}
+		
+		return entrada;
 	}
 }

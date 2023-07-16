@@ -8,7 +8,8 @@ public class QuartoDesafio {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Informe quantas frases irá digitar: ");
-		int n = sc.nextInt(); 
+		int n = obterEntradaValidada(sc); 
+		
 		sc.nextLine();
 
 		String[] lines = new String[n];
@@ -40,5 +41,18 @@ public class QuartoDesafio {
 		}
 
 		return sb.toString();
+	}
+	
+	private static int obterEntradaValidada(Scanner sc) {
+		String entrada = "";
+		
+		entrada = sc.next();
+		
+		while (!entrada.matches("-?\\d+(\\.\\d+)?")) {
+			System.out.println("Por favor, somente número inteiro maiores que zero");
+			entrada = sc.next();
+		}
+		
+		return Integer.valueOf(entrada);
 	}
 }

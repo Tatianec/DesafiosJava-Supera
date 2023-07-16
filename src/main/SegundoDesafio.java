@@ -6,15 +6,19 @@ import java.util.Scanner;
 public class SegundoDesafio {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        double valor = scanner.nextDouble();
-        int valorEmCentavos = (int) (valor * 100);
+        Scanner sc = new Scanner(System.in);      
+        
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        
+        int valorEmCentavos;
         int notas, moedas;
         int[] notasValores = {10000, 5000, 2000, 1000, 500, 200};
         int[] moedasValores = {100, 50, 25, 10, 5, 1};
-
-        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        
+		System.out.println("Por favor, informe valor");
+        double valor = obterValor(sc);
+        
+        valorEmCentavos = (int) (valor * 100);
        
         System.out.println("NOTAS:");
         for (int i = 0; i < notasValores.length; i++) {
@@ -36,4 +40,17 @@ public class SegundoDesafio {
     private static String formatarValor(double valor, DecimalFormat decimalFormat) {
         return String.format("%.2f", valor).replace(",", ".");
     }
+    
+	public static double obterValor(Scanner sc) {
+		double valor = 0.0;
+		
+		valor = sc.nextDouble();
+		
+		while (0 >= valor || valor > 1000000.00) {
+			System.out.println("Por favor, informe um número entre 0 e 1000000.00");
+			valor = sc.nextDouble();
+		}
+		
+		return valor;
+	}
 }
